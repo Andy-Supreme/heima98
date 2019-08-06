@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+    <h2 align="center">省市二级联动</h2>
+    <form action="#" style="text-align: center">
+        <select name="pro" id="pro">
+            <option >==请选择==</option>
+        </select>
+        <select name="city" id="city">
+            <option >==请选择==</option>
+        </select>市 <br>
+
+
+    </form>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+
+                var url="linkage";
+                var data = {"method":"selePro"};
+                $.post(url,data,function (d) {
+                    var bb="<option >==请选择==</option>";
+                    $(d).each(function (index, element) {
+                        bb+= "<option >"+element.pname+"</option>";
+                    });
+                    $("#pro").html(bb)
+                },"json");
+            $("#pro").change(function () {
+                var url="linkage";
+                var data = {"method":"seleCity","pname":$(this).val()};
+                $.post(url,data,function(d){
+                    var aa="<option >==请选择==</option>";
+                    $.each(d,function (index, element) {
+                            aa+="<option>"+element.cname+"</option>"
+                    })
+                    $("#city").html(aa);
+                },"json")
+            })
+        })
+
+
+
+    </script>
+
+</body>
+</html>
