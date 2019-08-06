@@ -33,6 +33,10 @@ public class LinkageService {
             e.printStackTrace();
         }
         return str;
+//你是我
+    }
 
+    public static void main(String[] args) {
+        System.out.println("niahao");
     }
 }
